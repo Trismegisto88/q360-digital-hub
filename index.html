@@ -3,567 +3,1441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q360° | Sistema Nervioso Digital</title>
-    <meta name="description" content="Quantum 360° — Sistema Nervioso Digital. Arquitectura de Ecosistema Digital para mantenimiento industrial inteligente.">
+    <title>Q360° | Sistema Nervioso Digital v4.0</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --q360-purple: #4814DA;
-            --q360-dark: #11152F;
-            --q360-cyan: #5FDAF4;
-            --q360-white: #FAFBFF;
-            --q360-gray-100: #F0F1F5;
-            --q360-gray-200: #D8DAE5;
-            --q360-gray-400: #8E92A8;
-            --q360-gray-600: #545872;
-            --q360-green: #00D68F;
-            --q360-amber: #FFB547;
-            --q360-red: #FF4757;
-            --q360-purple-glow: rgba(72, 20, 218, 0.15);
-            --q360-cyan-glow: rgba(95, 218, 244, 0.12);
-            --font-mono: 'JetBrains Mono', monospace;
-            --font-sans: 'Inter', -apple-system, sans-serif;
+            --purplish-blue: #4814DA;
+            --liberty: #11152F;
+            --electric-lemonade: #5FDAF4;
+            --white-smoke: #F5F5F5;
+            --fuchsia: #D946EF;
+            --rose: #F43F5E;
+            --indigo: #6366F1;
+            --graphite: #374151;
+            --steel: #6B7280;
+            --signal-orange: #EA580C;
+            --chrome: #D1D5DB;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --bg-dark: #0A0D1A;
+            --bg-card: #141829;
+            --bg-card-hover: #1A1F38;
+            --border-subtle: rgba(95, 218, 244, 0.12);
+            --glow-purple: rgba(72, 20, 218, 0.3);
+            --glow-cyan: rgba(95, 218, 244, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; font-size: 16px; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-sans);
-            background: var(--q360-dark);
-            color: var(--q360-white);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--white-smoke);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ─── Scrollbar ─── */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--q360-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--q360-purple); border-radius: 3px; }
+        code, .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* ─── Navigation ─── */
+        /* ===== NAV ===== */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(17, 21, 47, 0.85);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(10, 13, 26, 0.85);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(95, 218, 244, 0.08);
+            border-bottom: 1px solid var(--border-subtle);
             padding: 0 2rem;
         }
         .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             height: 64px;
         }
         .nav-brand {
-            display: flex; align-items: center; gap: 0.75rem;
-            text-decoration: none; color: var(--q360-white);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white-smoke);
         }
-        .nav-brand img { height: 32px; width: 32px; border-radius: 6px; }
-        .nav-brand-text { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
-        .nav-brand-sub {
-            font-family: var(--font-mono); font-size: 0.65rem;
-            color: var(--q360-cyan); text-transform: uppercase; letter-spacing: 0.1em;
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--purplish-blue), var(--electric-lemonade));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
         }
+        .nav-title { font-weight: 600; font-size: 15px; letter-spacing: -0.3px; }
         .nav-version {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--q360-gray-400);
-            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 11px;
+            color: var(--electric-lemonade);
+            font-family: 'JetBrains Mono', monospace;
+            opacity: 0.8;
         }
-        .nav-links { display: flex; gap: 0.25rem; }
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+        }
         .nav-links a {
-            font-size: 0.8rem; color: var(--q360-gray-400);
-            text-decoration: none; padding: 0.5rem 0.75rem; border-radius: 6px;
+            color: var(--steel);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
             transition: all 0.2s;
         }
-        .nav-links a:hover { color: var(--q360-white); background: rgba(255,255,255,0.05); }
+        .nav-links a:hover {
+            color: var(--electric-lemonade);
+            background: rgba(95, 218, 244, 0.08);
+        }
 
-        /* ─── Hero ─── */
+        /* ===== HERO ===== */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            text-align: center; padding: 6rem 2rem 4rem;
+            padding: 140px 2rem 80px;
+            text-align: center;
             position: relative;
-            background:
-                radial-gradient(ellipse 60% 50% at 50% 0%, rgba(72, 20, 218, 0.15) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(95, 218, 244, 0.06) 0%, transparent 50%);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--glow-purple) 0%, transparent 70%);
+            pointer-events: none;
         }
         .hero-badge {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--q360-cyan); text-transform: uppercase;
-            letter-spacing: 0.15em; margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(72, 20, 218, 0.15);
+            border: 1px solid rgba(72, 20, 218, 0.3);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--electric-lemonade);
+            margin-bottom: 24px;
+            font-family: 'JetBrains Mono', monospace;
         }
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
-            letter-spacing: -0.04em; line-height: 1.05;
-            background: linear-gradient(135deg, var(--q360-white) 40%, var(--q360-cyan) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--white-smoke) 0%, var(--electric-lemonade) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .hero-sub {
-            font-size: 1.1rem; color: var(--q360-gray-400);
-            max-width: 600px; margin-bottom: 2.5rem;
+            font-size: 18px;
+            color: var(--steel);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 400;
         }
-        .hero-quote {
-            font-family: var(--font-mono); font-size: 0.85rem;
-            color: var(--q360-cyan); opacity: 0.7;
-            border-left: 2px solid var(--q360-cyan);
-            padding-left: 1rem; text-align: left; max-width: 500px;
+        .hero-equation {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--electric-lemonade);
+            letter-spacing: 1px;
+            margin-bottom: 48px;
         }
 
-        /* ─── Stats bar ─── */
+        /* ===== STATS BAR ===== */
         .stats-bar {
-            display: flex; gap: 2rem; justify-content: center;
-            flex-wrap: wrap; margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
         .stat-item { text-align: center; }
-        .stat-number {
-            font-family: var(--font-mono); font-size: 2rem;
-            font-weight: 700; color: var(--q360-cyan);
+        .stat-num {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--white-smoke);
+            font-family: 'JetBrains Mono', monospace;
         }
         .stat-label {
-            font-size: 0.75rem; color: var(--q360-gray-400);
-            text-transform: uppercase; letter-spacing: 0.08em;
+            font-size: 12px;
+            color: var(--steel);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
         }
 
-        /* ─── Sections ─── */
+        /* ===== SECTIONS ===== */
         section {
-            padding: 5rem 2rem;
-            max-width: 1200px; margin: 0 auto;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 2rem;
         }
-        .section-label {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--q360-purple); text-transform: uppercase;
-            letter-spacing: 0.15em; margin-bottom: 0.5rem;
+        .section-header {
+            margin-bottom: 48px;
+        }
+        .section-tag {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--electric-lemonade);
+            margin-bottom: 12px;
+            font-family: 'JetBrains Mono', monospace;
         }
         .section-title {
-            font-size: 2.2rem; font-weight: 800;
-            letter-spacing: -0.03em; margin-bottom: 0.75rem;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
         }
         .section-desc {
-            color: var(--q360-gray-400); max-width: 700px; margin-bottom: 3rem;
+            font-size: 15px;
+            color: var(--steel);
+            max-width: 700px;
         }
 
-        /* ─── Flow Phases ─── */
-        .flow-phases {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem; margin-bottom: 4rem;
+        /* ===== LEGEND ===== */
+        .legend {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
-        .phase-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; padding: 2rem;
-            transition: all 0.3s;
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
         }
-        .phase-card:hover {
-            border-color: rgba(95, 218, 244, 0.2);
-            background: rgba(95, 218, 244, 0.03);
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
         }
-        .phase-number {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--q360-purple); text-transform: uppercase;
-            letter-spacing: 0.15em; margin-bottom: 0.5rem;
-        }
-        .phase-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
-        .phase-items { list-style: none; }
-        .phase-items li {
-            padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            display: flex; align-items: flex-start; gap: 0.75rem;
-            font-size: 0.9rem;
-        }
-        .phase-items li:last-child { border-bottom: none; }
-        .phase-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
-        .phase-item-name { font-weight: 600; }
-        .phase-item-desc { color: var(--q360-gray-400); font-size: 0.8rem; }
-        .tag {
-            font-family: var(--font-mono); font-size: 0.6rem;
-            padding: 0.15rem 0.4rem; border-radius: 3px;
-            text-transform: uppercase; letter-spacing: 0.05em;
-            display: inline-block; margin-left: 0.5rem;
-        }
-        .tag-core { background: rgba(72, 20, 218, 0.2); color: #a78bfa; }
-        .tag-native { background: rgba(95, 218, 244, 0.15); color: var(--q360-cyan); }
-        .tag-ai { background: rgba(0, 214, 143, 0.15); color: var(--q360-green); }
-        .tag-infra { background: rgba(255, 181, 71, 0.15); color: var(--q360-amber); }
-        .tag-new { background: rgba(255, 71, 87, 0.2); color: var(--q360-red); }
-        .tag-future { background: rgba(255,255,255,0.06); color: var(--q360-gray-400); }
+        .dot-core { background: var(--purplish-blue); box-shadow: 0 0 8px var(--glow-purple); }
+        .dot-active { background: var(--success); }
+        .dot-eval { background: var(--warning); }
+        .dot-pilot { background: var(--signal-orange); }
+        .dot-review { background: var(--rose); }
 
-        /* ─── Platform Grid ─── */
+        /* ===== CAPA GRID ===== */
+        .capa-section {
+            margin-bottom: 48px;
+        }
+        .capa-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .capa-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--electric-lemonade);
+            background: rgba(95, 218, 244, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+        .capa-name {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
         .platform-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 0.75rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
         }
-        .platform-chip {
-            display: flex; align-items: center; gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 8px; font-size: 0.85rem;
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
             transition: all 0.2s;
         }
-        .platform-chip:hover {
-            border-color: rgba(95, 218, 244, 0.15);
-            background: rgba(95, 218, 244, 0.03);
+        .platform-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(95, 218, 244, 0.25);
+            transform: translateY(-1px);
         }
-        .platform-chip-icon {
-            width: 32px; height: 32px; border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.7rem; flex-shrink: 0;
-            font-family: var(--font-mono);
+        .platform-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+            font-family: 'JetBrains Mono', monospace;
         }
-        .platform-chip-name { font-weight: 600; font-size: 0.82rem; }
-        .platform-chip-sub { font-size: 0.7rem; color: var(--q360-gray-400); }
+        .platform-info { flex: 1; min-width: 0; }
+        .platform-name {
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .platform-role {
+            font-size: 12px;
+            color: var(--steel);
+            margin-top: 3px;
+        }
+        .platform-cost {
+            font-size: 11px;
+            color: var(--steel);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+        .badge {
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-core { background: rgba(72, 20, 218, 0.2); color: #a78bfa; }
+        .badge-active { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .badge-pilot { background: rgba(234, 88, 12, 0.15); color: #fb923c; }
+        .badge-eval { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .badge-review { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
 
-        /* ─── Workflow Cards ─── */
+        /* Icon colors */
+        .ic-monday { background: linear-gradient(135deg, #ff3d57, #ff6b81); }
+        .ic-netsuite { background: linear-gradient(135deg, #1a5276, #2e86c1); }
+        .ic-google { background: linear-gradient(135deg, #4285f4, #34a853); }
+        .ic-n8n { background: linear-gradient(135deg, #ea4b71, #ff6d5a); }
+        .ic-easypanel { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+        .ic-digitalocean { background: linear-gradient(135deg, #0069ff, #0080ff); }
+        .ic-postgres { background: linear-gradient(135deg, #336791, #5a9fd4); }
+        .ic-evolution { background: linear-gradient(135deg, #25d366, #128c7e); }
+        .ic-claude { background: linear-gradient(135deg, #d4a574, #c4956a); }
+        .ic-antigravity { background: linear-gradient(135deg, #4285f4, #ea4335); }
+        .ic-mondayclaude { background: linear-gradient(135deg, #ff3d57, #d4a574); }
+        .ic-samsara { background: linear-gradient(135deg, #1a73e8, #4fc3f7); }
+        .ic-datascope { background: linear-gradient(135deg, #00bcd4, #26c6da); }
+        .ic-sesame { background: linear-gradient(135deg, #f06292, #e91e63); }
+        .ic-powerbi { background: linear-gradient(135deg, #f2c811, #e8a500); }
+        .ic-webflow { background: linear-gradient(135deg, #4353ff, #5e6eff); }
+        .ic-squarespace { background: linear-gradient(135deg, #222, #444); }
+        .ic-meta { background: linear-gradient(135deg, #0084ff, #00c6ff); }
+        .ic-budibase { background: linear-gradient(135deg, #9b59b6, #bb6bd9); }
+        .ic-adobe { background: linear-gradient(135deg, #ff0000, #ff4444); }
+        .ic-payana { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .ic-tractian { background: linear-gradient(135deg, #1e3a5f, #2563eb); }
+        .ic-giri { background: linear-gradient(135deg, #059669, #10b981); }
+
+        /* ===== ARCHITECTURE ===== */
+        .arch-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .arch-flow {
+                grid-template-columns: 1fr;
+            }
+            .arch-arrow { transform: rotate(90deg); }
+        }
+        .arch-phase {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px 24px;
+        }
+        .arch-phase-header {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--electric-lemonade);
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .arch-phase-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .arch-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 13px;
+        }
+        .arch-item:last-child { border-bottom: none; }
+        .arch-item-icon {
+            font-size: 18px;
+            width: 28px;
+            text-align: center;
+        }
+        .arch-item-name { font-weight: 500; flex: 1; }
+        .arch-item-tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+        .tag-core { background: rgba(72, 20, 218, 0.2); color: #a78bfa; }
+        .tag-native { background: rgba(95, 218, 244, 0.1); color: var(--electric-lemonade); }
+        .tag-ai { background: rgba(217, 70, 239, 0.15); color: #e879f9; }
+        .tag-infra { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; }
+        .tag-auto { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .arch-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--electric-lemonade);
+            opacity: 0.4;
+            align-self: center;
+        }
+
+        /* ===== PRINCIPLES ===== */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .principle-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .principle-icon { font-size: 32px; margin-bottom: 12px; }
+        .principle-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .principle-desc { font-size: 13px; color: var(--steel); }
+
+        /* ===== WORKFLOWS ===== */
         .wf-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
         }
         .wf-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 10px; padding: 1.5rem;
-            transition: all 0.3s; position: relative; overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s;
         }
-        .wf-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 2px;
+        .wf-card:hover {
+            border-color: rgba(95, 218, 244, 0.25);
         }
-        .wf-card.wf-sync::before { background: var(--q360-cyan); }
-        .wf-card.wf-alert::before { background: var(--q360-red); }
-        .wf-card.wf-report::before { background: var(--q360-green); }
-        .wf-card.wf-compute::before { background: var(--q360-amber); }
-        .wf-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
         .wf-type {
-            font-family: var(--font-mono); font-size: 0.65rem;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            margin-bottom: 0.4rem;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 12px;
         }
-        .wf-sync .wf-type { color: var(--q360-cyan); }
-        .wf-alert .wf-type { color: var(--q360-red); }
-        .wf-report .wf-type { color: var(--q360-green); }
-        .wf-compute .wf-type { color: var(--q360-amber); }
-        .wf-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.75rem; }
-        .wf-steps { list-style: none; }
+        .wf-sync { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; }
+        .wf-alert { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+        .wf-report { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .wf-compute { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .wf-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+        .wf-steps {
+            list-style: none;
+            font-size: 13px;
+            color: var(--steel);
+        }
         .wf-steps li {
-            font-size: 0.8rem; color: var(--q360-gray-400);
-            padding: 0.25rem 0;
-            padding-left: 1.5rem; position: relative;
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
         }
         .wf-steps li::before {
-            content: '→'; position: absolute; left: 0;
-            color: var(--q360-gray-600);
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--electric-lemonade);
+            opacity: 0.5;
         }
         .wf-schedule {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--q360-gray-400);
-            margin-top: 0.75rem; padding-top: 0.75rem;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            margin-top: 12px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--electric-lemonade);
+            opacity: 0.7;
         }
 
-        /* ─── KPIs by Role ─── */
-        .kpi-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .kpi-tab {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            padding: 0.5rem 1rem; border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: transparent; color: var(--q360-gray-400);
-            cursor: pointer; transition: all 0.2s;
+        /* ===== KPI SECTION ===== */
+        .kpi-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
         }
-        .kpi-tab:hover, .kpi-tab.active {
-            border-color: var(--q360-cyan); color: var(--q360-cyan);
-            background: rgba(95, 218, 244, 0.05);
+        .kpi-tab {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--steel);
+        }
+        .kpi-tab.active, .kpi-tab:hover {
+            background: rgba(72, 20, 218, 0.15);
+            border-color: var(--purplish-blue);
+            color: var(--white-smoke);
         }
         .kpi-panel { display: none; }
         .kpi-panel.active { display: block; }
         .kpi-table {
-            width: 100%; border-collapse: collapse;
-            font-size: 0.82rem;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
         }
         .kpi-table th {
-            text-align: left; padding: 0.6rem 0.75rem;
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--q360-gray-400); text-transform: uppercase;
-            letter-spacing: 0.08em;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--steel);
+            border-bottom: 1px solid var(--border-subtle);
+            font-family: 'JetBrains Mono', monospace;
         }
         .kpi-table td {
-            padding: 0.6rem 0.75rem;
+            padding: 12px 16px;
             border-bottom: 1px solid rgba(255,255,255,0.03);
+            color: var(--chrome);
         }
-        .kpi-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .kpi-table tr:hover td {
+            background: rgba(95, 218, 244, 0.03);
+        }
         .kpi-group-header {
-            font-weight: 700; font-size: 0.9rem;
-            padding: 1rem 0.75rem 0.5rem;
-            color: var(--q360-cyan);
+            font-weight: 600;
+            color: var(--white-smoke);
+            padding: 16px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .kpi-group-header td {
+            color: var(--white-smoke) !important;
+            font-weight: 600 !important;
         }
 
-        /* ─── Alerts ─── */
+        /* ===== ALERTS ===== */
         .alerts-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
         }
         .alert-card {
-            border-radius: 10px; padding: 1.5rem;
-            border: 1px solid;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid;
         }
-        .alert-medium {
-            background: rgba(255, 181, 71, 0.04);
-            border-color: rgba(255, 181, 71, 0.15);
-        }
-        .alert-high {
-            background: rgba(255, 165, 0, 0.04);
-            border-color: rgba(255, 165, 0, 0.15);
-        }
-        .alert-critical {
-            background: rgba(255, 71, 87, 0.04);
-            border-color: rgba(255, 71, 87, 0.15);
-        }
+        .alert-medium { border-left-color: var(--warning); }
+        .alert-high { border-left-color: var(--signal-orange); }
+        .alert-critical { border-left-color: var(--danger); }
         .alert-severity {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
-        .alert-medium .alert-severity { color: var(--q360-amber); }
-        .alert-high .alert-severity { color: #FFA500; }
-        .alert-critical .alert-severity { color: var(--q360-red); }
-        .alert-items { list-style: none; }
+        .alert-medium .alert-severity { color: var(--warning); }
+        .alert-high .alert-severity { color: var(--signal-orange); }
+        .alert-critical .alert-severity { color: var(--danger); }
+        .alert-items {
+            list-style: none;
+            font-size: 13px;
+            color: var(--chrome);
+        }
         .alert-items li {
-            font-size: 0.82rem; padding: 0.35rem 0;
-            color: var(--q360-gray-200);
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
         }
-        .alert-channel {
-            font-family: var(--font-mono); font-size: 0.7rem;
-            color: var(--q360-gray-400); margin-top: 0.75rem;
-            padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.05);
+        .alert-medium .alert-items li::before { content: '⚠️'; position: absolute; left: -4px; font-size: 11px; }
+        .alert-high .alert-items li::before { content: '🔶'; position: absolute; left: -4px; font-size: 11px; }
+        .alert-critical .alert-items li::before { content: '🔴'; position: absolute; left: -4px; font-size: 11px; }
+        .alert-footer {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--steel);
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* ─── Principles ─── */
-        .principles-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+        /* ===== COSTS ===== */
+        .costs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
         }
-        .principle-card {
-            padding: 1.5rem; border-radius: 10px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.06);
+        .cost-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
         }
-        .principle-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-        .principle-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
-        .principle-desc { font-size: 0.82rem; color: var(--q360-gray-400); }
+        .cost-label {
+            font-size: 11px;
+            color: var(--steel);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .cost-value {
+            font-size: 22px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--white-smoke);
+        }
+        .cost-pct {
+            font-size: 12px;
+            color: var(--electric-lemonade);
+            margin-top: 4px;
+        }
+        .cost-total {
+            background: linear-gradient(135deg, rgba(72, 20, 218, 0.15), rgba(95, 218, 244, 0.1));
+            border-color: var(--purplish-blue);
+        }
 
-        /* ─── Footer ─── */
+        /* ===== DISCONTINUED ===== */
+        .disc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+        .disc-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            opacity: 0.6;
+        }
+        .disc-name { font-weight: 500; text-decoration: line-through; font-size: 14px; }
+        .disc-arrow { color: var(--steel); font-size: 13px; }
+        .disc-replacement { font-size: 13px; color: var(--success); font-weight: 500; }
+
+        /* ===== QUOTE ===== */
+        .quote-block {
+            text-align: center;
+            padding: 60px 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quote-text {
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--chrome);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .quote-attr {
+            font-size: 13px;
+            color: var(--steel);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            text-align: center; padding: 3rem 2rem;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            font-size: 0.8rem; color: var(--q360-gray-600);
+            text-align: center;
+            padding: 40px 2rem;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 13px;
+            color: var(--steel);
         }
-        footer a { color: var(--q360-cyan); text-decoration: none; }
-        footer .footer-quote {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--q360-gray-400); margin-top: 0.5rem;
+        footer a {
+            color: var(--electric-lemonade);
+            text-decoration: none;
         }
 
-        /* ─── Responsive ─── */
+        /* ===== INTEGRATION DIAGRAM ===== */
+        .integration-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--chrome);
+            white-space: pre;
+            line-height: 1.8;
+            overflow-x: auto;
+            text-align: center;
+            margin-top: 32px;
+        }
+        .integration-diagram .hl { color: var(--electric-lemonade); }
+        .integration-diagram .arrow { color: var(--purplish-blue); }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .nav-version { display: none; }
-            section { padding: 3rem 1.25rem; }
-            .flow-phases { grid-template-columns: 1fr; }
-            .stats-bar { gap: 1.5rem; }
+            .stats-bar { gap: 24px; }
+            .platform-grid { grid-template-columns: 1fr; }
+            .wf-grid { grid-template-columns: 1fr; }
+            .alerts-grid { grid-template-columns: 1fr; }
+            .costs-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* ─── Animations ─── */
+        /* ===== CONSTELLATION / HUB-SPOKE ===== */
+        .constellation {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto 48px;
+        }
+        @media (max-width: 600px) {
+            .constellation { max-width: 340px; }
+            .spoke-node { width: 36px; height: 36px; font-size: 8px; }
+            .hub-center { width: 60px; height: 60px; }
+            .hub-center .hub-icon { font-size: 22px; }
+        }
+        .constellation svg.lines-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .constellation svg.lines-svg line {
+            stroke: var(--fuchsia);
+            stroke-width: 1.5;
+            stroke-dasharray: 6 6;
+            opacity: 0.3;
+            animation: dashScroll 2.5s linear infinite;
+        }
+        @keyframes dashScroll {
+            to { stroke-dashoffset: -24; }
+        }
+        .hub-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: var(--purplish-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 0 60px rgba(72, 20, 218, 0.45), 0 0 120px rgba(72, 20, 218, 0.15);
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-5px); }
+        }
+        .hub-center .hub-icon {
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.5px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .spoke-node {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: default;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+        }
+        .spoke-node:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 28px rgba(0,0,0,0.5);
+        }
+        .spoke-node .spoke-tip {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            font-weight: 500;
+            white-space: nowrap;
+            color: var(--chrome);
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            pointer-events: none;
+        }
+        .spoke-node:hover .spoke-tip { opacity: 1; }
+        .constellation::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 82%;
+            height: 82%;
+            border-radius: 50%;
+            border: 1px dashed rgba(95, 218, 244, 0.06);
+            pointer-events: none;
+        }
+
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
         }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
 
-<!-- ═══════════════════ NAV ═══════════════════ -->
+<!-- NAV -->
 <nav>
     <div class="nav-inner">
         <a href="#" class="nav-brand">
-            <img src="isotipo.png" alt="Q360">
+            <div class="nav-logo">Q</div>
             <div>
-                <div class="nav-brand-text">Q360°</div>
-                <div class="nav-brand-sub">Sistema Nervioso Digital</div>
+                <div class="nav-title">Q360° · Sistema Nervioso Digital</div>
+                <div class="nav-version">v4.0 · Feb 2026</div>
             </div>
         </a>
-        <div class="nav-version">v3.1 · Feb 2026 · quantum360.ltd</div>
-        <div class="nav-links">
-            <a href="#ecosistema">Ecosistema</a>
-            <a href="#arquitectura">Arquitectura</a>
-            <a href="#workflows">Workflows n8n</a>
-            <a href="#kpis">KPIs</a>
-            <a href="#alertas">Alertas</a>
-        </div>
+        <ul class="nav-links">
+            <li><a href="#ecosistema">Ecosistema</a></li>
+            <li><a href="#arquitectura">Arquitectura</a></li>
+            <li><a href="#workflows">Workflows</a></li>
+            <li><a href="#kpis">KPIs</a></li>
+            <li><a href="#alertas">Alertas</a></li>
+            <li><a href="#costos">Costos</a></li>
+        </ul>
     </div>
 </nav>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<section class="hero" id="top">
-    <div class="hero-badge animate-in">Quantum 360°</div>
-    <h1 class="animate-in delay-1">Sistema Nervioso Digital</h1>
-    <p class="hero-sub animate-in delay-2">Arquitectura de Ecosistema Digital — Febrero 2026 | v3.1</p>
-    <div class="hero-quote animate-in delay-3">Automatización + Visibilidad = Premium Justificado</div>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">● LIVE — 22 plataformas · 12+ workflows activos</div>
+    <h1>Sistema Nervioso Digital</h1>
+    <p class="hero-sub">Arquitectura de ecosistema digital para mantenimiento industrial inteligente — Quantum 360°</p>
+    <p class="hero-equation">Automatización + Visibilidad = Premium Justificado</p>
 
-    <div class="stats-bar animate-in delay-3">
+    <!-- CONSTELLATION DIAGRAM -->
+    <div class="constellation" id="constellation">
+        <svg class="lines-svg" id="linesSvg"></svg>
+        <!-- Hub: Monday.com -->
+        <div class="hub-center">
+            <div class="hub-icon">M<br><span style="font-size:8px;font-weight:400;opacity:0.7;">SND Hub</span></div>
+        </div>
+        <!-- Spokes generated by JS -->
+    </div>
+
+    <div class="stats-bar">
         <div class="stat-item">
-            <div class="stat-number">13+</div>
-            <div class="stat-label">Plataformas integradas</div>
+            <div class="stat-num">22</div>
+            <div class="stat-label">Plataformas Activas</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">65+</div>
+            <div class="stat-num">65+</div>
             <div class="stat-label">Ubicaciones Walmart</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">51</div>
-            <div class="stat-label">Técnicos en campo</div>
+            <div class="stat-num">51</div>
+            <div class="stat-label">Técnicos en Campo</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">20</div>
-            <div class="stat-label">Workflows n8n</div>
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Automatizaciones n8n</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">~$3K</div>
+            <div class="stat-label">USD/Mes Stack</div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ═══════════════════ ECOSISTEMA ═══════════════════ -->
+<!-- ECOSISTEMA -->
 <section id="ecosistema">
-    <div class="section-label">Ecosistema</div>
-    <div class="section-title">Arquitectura del Ecosistema Digital</div>
-    <p class="section-desc">Flujo End-to-End: desde la captura de datos en campo hasta la visualización ejecutiva y toma de decisiones.</p>
+    <div class="section-header">
+        <div class="section-tag">Ecosistema</div>
+        <h2 class="section-title">Stack Completo — 10 Capas</h2>
+        <p class="section-desc">22 plataformas activas, 3 en evaluación, 3 descontinuadas. Administrador master: oscar@quantum360.ltd</p>
+    </div>
 
-    <div class="flow-phases">
-        <!-- FASE 1 -->
-        <div class="phase-card">
-            <div class="phase-number">Fase 01</div>
-            <div class="phase-title">Captura & Gestión</div>
-            <ul class="phase-items">
-                <li><span class="phase-icon">📍</span><div><div class="phase-item-name">Samsara<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">GPS, flota, telemetría, geofence</div></div></li>
-                <li><span class="phase-icon">👤</span><div><div class="phase-item-name">Sesame HR<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">Check-in/out, asistencia, vacaciones</div></div></li>
-                <li><span class="phase-icon">📋</span><div><div class="phase-item-name">DataScope<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">Checklists, evidencias, formularios campo</div></div></li>
-                <li><span class="phase-icon">💬</span><div><div class="phase-item-name">WhatsApp Business<span class="tag tag-native">NATIVO</span></div><div class="phase-item-desc">Comunicación, confirmaciones, alertas (Evolution API)</div></div></li>
-                <li><span class="phase-icon">📊</span><div><div class="phase-item-name">Monday.com<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">OTs, proyectos, CRM, dashboards (60+ boards)</div></div></li>
-                <li><span class="phase-icon">💰</span><div><div class="phase-item-name">NetSuite<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">Facturación, CxC, P&L, conciliaciones</div></div></li>
-                <li><span class="phase-icon">📁</span><div><div class="phase-item-name">Google Workspace<span class="tag tag-native">NATIVO</span></div><div class="phase-item-desc">Gmail, Drive, Calendar, Meet</div></div></li>
-            </ul>
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot dot-core"></div> Core</div>
+        <div class="legend-item"><div class="legend-dot dot-active"></div> Activo</div>
+        <div class="legend-item"><div class="legend-dot dot-pilot"></div> Piloto</div>
+        <div class="legend-item"><div class="legend-dot dot-eval"></div> Evaluación</div>
+        <div class="legend-item"><div class="legend-dot dot-review"></div> Revisar</div>
+    </div>
+
+    <!-- CAPA 1 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 01</span>
+            <span class="capa-name">Core ERP & Operaciones</span>
         </div>
-
-        <!-- FASE 2 -->
-        <div class="phase-card">
-            <div class="phase-number">Fase 02</div>
-            <div class="phase-title">Automatización & IA</div>
-            <ul class="phase-items">
-                <li><span class="phase-icon">⚡</span><div><div class="phase-item-name">n8n (Self-hosted)<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">Motor de workflows, webhooks, integraciones</div></div></li>
-                <li><span class="phase-icon">🤖</span><div><div class="phase-item-name">Monday Automations<span class="tag tag-native">NATIVO</span></div><div class="phase-item-desc">Reglas nativas, triggers, notificaciones</div></div></li>
-                <li><span class="phase-icon">🧠</span><div><div class="phase-item-name">Claude Team<span class="tag tag-ai">AI</span></div><div class="phase-item-desc">IA estratégica, co-desarrollo SND, proyecto AOP 2026</div></div></li>
-                <li><span class="phase-icon">🚀</span><div><div class="phase-item-name">Google Antigravity<span class="tag tag-new">NUEVO</span></div><div class="phase-item-desc">IDE agent-first · Claude Sonnet 4.5 · Workspace q360-snd</div></div></li>
-                <li><span class="phase-icon">🔗</span><div><div class="phase-item-name">Monday + Claude<span class="tag tag-ai">AI</span></div><div class="phase-item-desc">AI Blocks, asistente integrado nativo</div></div></li>
-                <li><span class="phase-icon">✨</span><div><div class="phase-item-name">Gemini<span class="tag tag-ai">AI</span></div><div class="phase-item-desc">Integración Google Workspace</div></div></li>
-                <li><span class="phase-icon">🖥️</span><div><div class="phase-item-name">Digital Ocean + Easypanel<span class="tag tag-infra">INFRA</span></div><div class="phase-item-desc">Hosting n8n, PostgreSQL, Evolution API, apps internas</div></div></li>
-            </ul>
-        </div>
-
-        <!-- FASE 3 -->
-        <div class="phase-card">
-            <div class="phase-number">Fase 03</div>
-            <div class="phase-title">Visualización & Decisiones</div>
-            <ul class="phase-items">
-                <li><span class="phase-icon">📈</span><div><div class="phase-item-name">Power BI<span class="tag tag-core">CORE</span></div><div class="phase-item-desc">Dashboards ejecutivos, KPIs, reportes BI</div></div></li>
-                <li><span class="phase-icon">📊</span><div><div class="phase-item-name">Monday Dashboards<span class="tag tag-native">NATIVO</span></div><div class="phase-item-desc">Vistas operativas en tiempo real</div></div></li>
-                <li><span class="phase-icon">📱</span><div><div class="phase-item-name">Monday Mobile<span class="tag tag-native">NATIVO</span></div><div class="phase-item-desc">Acceso campo, supervisores, técnicos</div></div></li>
-                <li><span class="phase-icon">🔔</span><div><div class="phase-item-name">Alertas Automáticas<span class="tag tag-native">AUTO</span></div><div class="phase-item-desc">WhatsApp, Email, Monday @menciones</div></div></li>
-            </ul>
-            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06);">
-                <div class="phase-number">Futuro 2026-27</div>
-                <ul class="phase-items">
-                    <li><span class="phase-icon">🔧</span><div><div class="phase-item-name">GIRI / Lean Track<span class="tag tag-future">2026</span></div><div class="phase-item-desc">Gestión de mantenimiento preventivo</div></div></li>
-                    <li><span class="phase-icon">🏭</span><div><div class="phase-item-name">Tractian<span class="tag tag-future">2027+</span></div><div class="phase-item-desc">IoT, monitoreo predictivo de activos</div></div></li>
-                </ul>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-monday">M</div>
+                <div class="platform-info">
+                    <div class="platform-name">Monday.com <span class="badge badge-core">Core</span></div>
+                    <div class="platform-role">Hub central: 60+ boards, O2C, CRM, Ops, RH, Compras</div>
+                    <div class="platform-cost">~$800 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-netsuite">NS</div>
+                <div class="platform-info">
+                    <div class="platform-name">NetSuite <span class="badge badge-core">Core</span></div>
+                    <div class="platform-role">ERP: P&L, facturación, CxC, CxP, contabilidad</div>
+                    <div class="platform-cost">~$1,200 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-google">GW</div>
+                <div class="platform-info">
+                    <div class="platform-name">Google Workspace <span class="badge badge-core">Core</span></div>
+                    <div class="platform-role">Dominio quantum360.ltd — Gmail, Drive, Calendar, Meet, Admin SDK</div>
+                    <div class="platform-cost">~$360 USD/mes</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Platform chips -->
-    <div class="section-label" style="margin-top: 2rem;">Stack Activo</div>
-    <div class="platform-grid">
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(72, 20, 218, 0.2); color: #a78bfa;">NS</div>
-            <div><div class="platform-chip-name">NetSuite</div><div class="platform-chip-sub">ERP</div></div>
+    <!-- CAPA 2 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 02</span>
+            <span class="capa-name">Automatización & Orquestación</span>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(95, 218, 244, 0.15); color: var(--q360-cyan);">M</div>
-            <div><div class="platform-chip-name">Monday.com</div><div class="platform-chip-sub">Work OS</div></div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-n8n">n8n</div>
+                <div class="platform-info">
+                    <div class="platform-name">n8n <span class="badge badge-core">Core</span></div>
+                    <div class="platform-role">Orquestador SND. 12+ workflows activos, 20 en roadmap. Self-hosted</div>
+                    <div class="platform-cost">$0 (self-hosted)</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-easypanel">EP</div>
+                <div class="platform-info">
+                    <div class="platform-name">EasyPanel <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Panel gestión servicios cloud. Host: 157.230.162.181:3000</div>
+                    <div class="platform-cost">Incluido en DigitalOcean</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-digitalocean">DO</div>
+                <div class="platform-info">
+                    <div class="platform-name">DigitalOcean <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Infraestructura cloud: n8n, PostgreSQL, Evolution API, Budibase</div>
+                    <div class="platform-cost">~$50 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-postgres">PG</div>
+                <div class="platform-info">
+                    <div class="platform-name">PostgreSQL <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">DB SND: folios, registros atómicos, contadores</div>
+                    <div class="platform-cost">Incluido en DigitalOcean</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-evolution">WA</div>
+                <div class="platform-info">
+                    <div class="platform-name">Evolution API <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">WhatsApp Business API. Self-hosted. Notificaciones, alertas, bot SND</div>
+                    <div class="platform-cost">$0 (self-hosted)</div>
+                </div>
+            </div>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(0, 214, 143, 0.15); color: var(--q360-green);">n8n</div>
-            <div><div class="platform-chip-name">n8n</div><div class="platform-chip-sub">Workflows</div></div>
+    </div>
+
+    <!-- CAPA 3 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 03</span>
+            <span class="capa-name">Inteligencia Artificial & Desarrollo</span>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(255, 181, 71, 0.15); color: var(--q360-amber);">PBI</div>
-            <div><div class="platform-chip-name">Power BI</div><div class="platform-chip-sub">BI</div></div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-claude">Cl</div>
+                <div class="platform-info">
+                    <div class="platform-name">Claude Team <span class="badge badge-core">Core</span></div>
+                    <div class="platform-role">IA estratégica: análisis, documentación, workflows, co-piloto CEO (2 seats)</div>
+                    <div class="platform-cost">~$60 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-antigravity">AG</div>
+                <div class="platform-info">
+                    <div class="platform-name">Google Antigravity <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">IDE agent-first. Workspace: q360-snd. Claude Sonnet 4.5</div>
+                    <div class="platform-cost">$0 (preview gratuito)</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-mondayclaude">M+C</div>
+                <div class="platform-info">
+                    <div class="platform-name">Monday + Claude AI <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">AI Blocks nativos en Monday.com (desde Sep 2025)</div>
+                    <div class="platform-cost">Incluido en Monday</div>
+                </div>
+            </div>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(0, 214, 143, 0.15); color: var(--q360-green);">C</div>
-            <div><div class="platform-chip-name">Claude Team</div><div class="platform-chip-sub">IA Estratégica</div></div>
+    </div>
+
+    <!-- CAPA 4 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 04</span>
+            <span class="capa-name">Campo & Telemetría</span>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(255, 71, 87, 0.2); color: var(--q360-red);">AG</div>
-            <div><div class="platform-chip-name">Antigravity</div><div class="platform-chip-sub">IDE Agent</div></div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-samsara">Sa</div>
+                <div class="platform-info">
+                    <div class="platform-name">Samsara <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">GPS, telemetría, cámaras, safety score, flota. API integrada con n8n</div>
+                    <div class="platform-cost">~$200 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-datascope">DS</div>
+                <div class="platform-info">
+                    <div class="platform-name">DataScope <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Formularios campo, checklists, evidencias fotográficas. 56% impl.</div>
+                    <div class="platform-cost">~$100 USD/mes</div>
+                </div>
+            </div>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(95, 218, 244, 0.1); color: var(--q360-cyan);">GW</div>
-            <div><div class="platform-chip-name">Google Workspace</div><div class="platform-chip-sub">Collab</div></div>
+    </div>
+
+    <!-- CAPA 5 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 05</span>
+            <span class="capa-name">Gestión de Personal</span>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(255, 181, 71, 0.1); color: var(--q360-amber);">S</div>
-            <div><div class="platform-chip-name">Samsara</div><div class="platform-chip-sub">Fleet</div></div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-sesame">Se</div>
+                <div class="platform-info">
+                    <div class="platform-name">Sesame HR <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Asistencia, vacaciones, evaluaciones, analytics de personal</div>
+                    <div class="platform-cost">~$150 USD/mes</div>
+                </div>
+            </div>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(72, 20, 218, 0.15); color: #a78bfa;">Se</div>
-            <div><div class="platform-chip-name">Sesame HR</div><div class="platform-chip-sub">RRHH</div></div>
+    </div>
+
+    <!-- CAPA 6 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 06</span>
+            <span class="capa-name">Business Intelligence & Analytics</span>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(0, 214, 143, 0.1); color: var(--q360-green);">DS</div>
-            <div><div class="platform-chip-name">DataScope</div><div class="platform-chip-sub">Field</div></div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-powerbi">PBI</div>
+                <div class="platform-info">
+                    <div class="platform-name">Power BI <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Dashboards ejecutivos, KPIs, reportes Alejandro Davis</div>
+                    <div class="platform-cost">~$40 USD/mes (2 Pro)</div>
+                </div>
+            </div>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(95, 218, 244, 0.1); color: var(--q360-cyan);">PG</div>
-            <div><div class="platform-chip-name">PostgreSQL</div><div class="platform-chip-sub">DB SND</div></div>
+    </div>
+
+    <!-- CAPA 7 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 07</span>
+            <span class="capa-name">Web & Marketing</span>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(255, 181, 71, 0.1); color: var(--q360-amber);">DO</div>
-            <div><div class="platform-chip-name">Digital Ocean</div><div class="platform-chip-sub">Infra</div></div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-webflow">Wf</div>
+                <div class="platform-info">
+                    <div class="platform-name">Webflow <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Sitio web Q360. Fases 1-2 (refresh contenido + tech page)</div>
+                    <div class="platform-cost">~$40 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-squarespace">Sq</div>
+                <div class="platform-info">
+                    <div class="platform-name">Squarespace <span class="badge badge-review">Revisar</span></div>
+                    <div class="platform-role">Dominio y/o sitio legacy. Pendiente clarificar scope</div>
+                    <div class="platform-cost">~$15 USD/mes</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-meta">Fb</div>
+                <div class="platform-info">
+                    <div class="platform-name">Meta Business Suite <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Facebook, Instagram, WhatsApp Business (perfil)</div>
+                    <div class="platform-cost">$0</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-meta">MD</div>
+                <div class="platform-info">
+                    <div class="platform-name">Meta for Developers <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Apps, APIs de Meta, configuración WhatsApp Cloud API</div>
+                    <div class="platform-cost">$0</div>
+                </div>
+            </div>
         </div>
-        <div class="platform-chip">
-            <div class="platform-chip-icon" style="background: rgba(0, 214, 143, 0.1); color: var(--q360-green);">WA</div>
-            <div><div class="platform-chip-name">Evolution API</div><div class="platform-chip-sub">WhatsApp</div></div>
+    </div>
+
+    <!-- CAPA 8 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 08</span>
+            <span class="capa-name">Low-Code & Apps Internas</span>
+        </div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-budibase">Bb</div>
+                <div class="platform-info">
+                    <div class="platform-name">Budibase <span class="badge badge-pilot">Piloto</span></div>
+                    <div class="platform-role">Apps internas low-code. Hosted en EasyPanel/DigitalOcean</div>
+                    <div class="platform-cost">$0 (self-hosted)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPA 9 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 09</span>
+            <span class="capa-name">Productividad & Diseño</span>
+        </div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-adobe">Ai</div>
+                <div class="platform-info">
+                    <div class="platform-name">Adobe Creative Cloud <span class="badge badge-active">Activo</span></div>
+                    <div class="platform-role">Illustrator, Photoshop, Premiere. Diseño, marca, contenido</div>
+                    <div class="platform-cost">~$55 USD/mes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPA 10 -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">CAPA 10</span>
+            <span class="capa-name">Fintech & Pagos</span>
+        </div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-payana">Pa</div>
+                <div class="platform-info">
+                    <div class="platform-name">Payana <span class="badge badge-eval">Evaluación</span></div>
+                    <div class="platform-role">AP Automation: CFDI/SAT, dispersión STP, conciliación bancaria, sync NetSuite</div>
+                    <div class="platform-cost">~$9,900 MXN/mes (estimado)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FUTURO -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">FUTURO</span>
+            <span class="capa-name">En Evaluación 2026-27</span>
+        </div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon ic-tractian">Tr</div>
+                <div class="platform-info">
+                    <div class="platform-name">Tractian <span class="badge badge-eval">2027+</span></div>
+                    <div class="platform-role">Mantenimiento predictivo IoT (sensores vibración, TracOS CMMS)</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon ic-giri">GT</div>
+                <div class="platform-info">
+                    <div class="platform-name">GIRI / Lean Track <span class="badge badge-eval">2026</span></div>
+                    <div class="platform-role">Instrucciones de trabajo digitales para técnicos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESCONTINUADAS -->
+    <div class="capa-section">
+        <div class="capa-header">
+            <span class="capa-num">☠️</span>
+            <span class="capa-name">Descontinuadas</span>
+        </div>
+        <div class="disc-grid">
+            <div class="disc-card">
+                <span class="disc-name">Ubiqo</span>
+                <span class="disc-arrow">→</span>
+                <span class="disc-replacement">Samsara (2025)</span>
+            </div>
+            <div class="disc-card">
+                <span class="disc-name">Evidence</span>
+                <span class="disc-arrow">→</span>
+                <span class="disc-replacement">Power BI (2025)</span>
+            </div>
+            <div class="disc-card">
+                <span class="disc-name">Jibble</span>
+                <span class="disc-arrow">→</span>
+                <span class="disc-replacement">Sesame HR (2025)</span>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════ WORKFLOWS ═══════════════════ -->
+<!-- ARQUITECTURA -->
+<section id="arquitectura">
+    <div class="section-header">
+        <div class="section-tag">Arquitectura</div>
+        <h2 class="section-title">Flujo End-to-End</h2>
+        <p class="section-desc">Desde la captura de datos en campo hasta la visualización ejecutiva y toma de decisiones.</p>
+    </div>
+
+    <div class="arch-flow">
+        <div class="arch-phase">
+            <div class="arch-phase-header">Fase 01</div>
+            <div class="arch-phase-title">Captura & Gestión</div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📍</span>
+                <span class="arch-item-name">Samsara — GPS, flota, telemetría</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">👤</span>
+                <span class="arch-item-name">Sesame HR — Asistencia, check-in/out</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📋</span>
+                <span class="arch-item-name">DataScope — Checklists, evidencias</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">💬</span>
+                <span class="arch-item-name">Evolution API — WhatsApp Business</span>
+                <span class="arch-item-tag tag-native">Nativo</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📊</span>
+                <span class="arch-item-name">Monday.com — OTs, proyectos, CRM</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">💰</span>
+                <span class="arch-item-name">NetSuite — Facturación, P&L</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📁</span>
+                <span class="arch-item-name">Google Workspace — Drive, Calendar</span>
+                <span class="arch-item-tag tag-native">Nativo</span>
+            </div>
+        </div>
+
+        <div class="arch-arrow">→</div>
+
+        <div class="arch-phase">
+            <div class="arch-phase-header">Fase 02</div>
+            <div class="arch-phase-title">Automatización & IA</div>
+            <div class="arch-item">
+                <span class="arch-item-icon">⚡</span>
+                <span class="arch-item-name">n8n (Self-hosted) — Motor de workflows</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🤖</span>
+                <span class="arch-item-name">Monday Automations — Triggers nativos</span>
+                <span class="arch-item-tag tag-native">Nativo</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🧠</span>
+                <span class="arch-item-name">Claude Team — IA estratégica (2 seats)</span>
+                <span class="arch-item-tag tag-ai">AI</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🔗</span>
+                <span class="arch-item-name">Monday + Claude AI Blocks</span>
+                <span class="arch-item-tag tag-ai">AI</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🚀</span>
+                <span class="arch-item-name">Google Antigravity — IDE agent-first</span>
+                <span class="arch-item-tag tag-ai">AI</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🖥️</span>
+                <span class="arch-item-name">DigitalOcean + EasyPanel — Infra</span>
+                <span class="arch-item-tag tag-infra">Infra</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🗄️</span>
+                <span class="arch-item-name">PostgreSQL — DB SND</span>
+                <span class="arch-item-tag tag-infra">Infra</span>
+            </div>
+        </div>
+
+        <div class="arch-arrow">→</div>
+
+        <div class="arch-phase">
+            <div class="arch-phase-header">Fase 03</div>
+            <div class="arch-phase-title">Visualización & Decisiones</div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📈</span>
+                <span class="arch-item-name">Power BI — Dashboards ejecutivos</span>
+                <span class="arch-item-tag tag-core">Core</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📊</span>
+                <span class="arch-item-name">Monday Dashboards — Vistas operativas</span>
+                <span class="arch-item-tag tag-native">Nativo</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">📱</span>
+                <span class="arch-item-name">Monday Mobile — Acceso campo</span>
+                <span class="arch-item-tag tag-native">Nativo</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🔔</span>
+                <span class="arch-item-name">Alertas — WhatsApp, Email, Monday</span>
+                <span class="arch-item-tag tag-auto">Auto</span>
+            </div>
+            <div class="arch-item">
+                <span class="arch-item-icon">🌐</span>
+                <span class="arch-item-name">Webflow — Sitio web corporativo</span>
+                <span class="arch-item-tag tag-native">Web</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRINCIPLES -->
+    <div style="margin-top: 60px;">
+        <h3 class="section-title" style="font-size: 20px; margin-bottom: 24px;">Principios de Diseño</h3>
+        <div class="principles-grid">
+            <div class="principle-card">
+                <div class="principle-icon">🎯</div>
+                <div class="principle-title">Single Source of Truth</div>
+                <div class="principle-desc">Monday.com es la fuente única. Toda data vive o se refleja ahí.</div>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">🔄</div>
+                <div class="principle-title">Cero Entrada Manual</div>
+                <div class="principle-desc">Si un dato se puede automatizar, se automatiza. Sin excepciones.</div>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">🤖</div>
+                <div class="principle-title">El SND valida el SND</div>
+                <div class="principle-desc">Cero auditorías humanas. Los datos se cruzan y validan solos.</div>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">📸</div>
+                <div class="principle-title">Sin registro, no existe</div>
+                <div class="principle-desc">Evidencia fotográfica, recibos, calendario. Todo documentado.</div>
+            </div>
+            <div class="principle-card">
+                <div class="principle-icon">⚡</div>
+                <div class="principle-title">Automatizar antes de vender</div>
+                <div class="principle-desc">La prioridad no es vender más, sino automatizar lo que ya tenemos.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTEGRATION DIAGRAM -->
+    <div class="integration-diagram">
+<span class="hl">Monday.com</span> <span class="arrow">←→</span> <span class="hl">n8n</span> <span class="arrow">←→</span> <span class="hl">NetSuite</span>
+    <span class="arrow">↕</span>              <span class="arrow">↕</span>
+<span class="hl">DataScope</span>      <span class="hl">PostgreSQL</span>
+    <span class="arrow">↕</span>              <span class="arrow">↕</span>
+<span class="hl">Samsara</span>     <span class="hl">Evolution API (WA)</span>
+    <span class="arrow">↕</span>              <span class="arrow">↕</span>
+<span class="hl">Sesame HR</span>   <span class="hl">Google Workspace</span>
+    <span class="arrow">↕</span>
+<span class="hl">Power BI</span>
+    </div>
+</section>
+
+<!-- WORKFLOWS -->
 <section id="workflows">
-    <div class="section-label">Automatizaciones</div>
-    <div class="section-title">Workflows n8n</div>
-    <p class="section-desc">Patrón estándar: TRIGGER → EXTRACT → TRANSFORM → LOAD → NOTIFY. Motor self-hosted en Digital Ocean + Easypanel. 20 workflows en 4 bloques.</p>
+    <div class="section-header">
+        <div class="section-tag">Automatizaciones</div>
+        <h2 class="section-title">Workflows n8n</h2>
+        <p class="section-desc">Patrón estándar: TRIGGER → EXTRACT → TRANSFORM → LOAD → NOTIFY. Motor self-hosted en DigitalOcean + EasyPanel.</p>
+    </div>
 
     <div class="wf-grid">
-        <div class="wf-card wf-sync">
-            <div class="wf-type">SYNC</div>
+        <div class="wf-card">
+            <span class="wf-type wf-sync">Sync</span>
             <div class="wf-title">NetSuite → Monday (Saldos)</div>
             <ul class="wf-steps">
                 <li>NetSuite API → Extraer saldos CxC</li>
@@ -572,8 +1446,8 @@
             </ul>
             <div class="wf-schedule">⏰ Diario 8:00am</div>
         </div>
-        <div class="wf-card wf-sync">
-            <div class="wf-type">SYNC</div>
+        <div class="wf-card">
+            <span class="wf-type wf-sync">Sync</span>
             <div class="wf-title">NetSuite → Monday (Cobranza)</div>
             <ul class="wf-steps">
                 <li>NetSuite API → Status de pagos</li>
@@ -582,8 +1456,8 @@
             </ul>
             <div class="wf-schedule">⏰ Cada 4 horas</div>
         </div>
-        <div class="wf-card wf-sync">
-            <div class="wf-type">SYNC</div>
+        <div class="wf-card">
+            <span class="wf-type wf-sync">Sync</span>
             <div class="wf-title">Sesame → Monday (Asistencia)</div>
             <ul class="wf-steps">
                 <li>Sesame API → Check-in/out diario</li>
@@ -592,8 +1466,8 @@
             </ul>
             <div class="wf-schedule">⏰ Diario 10:00am</div>
         </div>
-        <div class="wf-card wf-sync">
-            <div class="wf-type">SYNC</div>
+        <div class="wf-card">
+            <span class="wf-type wf-sync">Sync</span>
             <div class="wf-title">Samsara → Monday (GPS/Flota)</div>
             <ul class="wf-steps">
                 <li>Samsara API → Ubicaciones, alertas</li>
@@ -602,8 +1476,8 @@
             </ul>
             <div class="wf-schedule">⏰ Cada 30 min</div>
         </div>
-        <div class="wf-card wf-alert">
-            <div class="wf-type">ALERTA</div>
+        <div class="wf-card">
+            <span class="wf-type wf-alert">Alerta</span>
             <div class="wf-title">Monitor SLA OTs</div>
             <ul class="wf-steps">
                 <li>Monday API → OTs abiertas >4h</li>
@@ -612,8 +1486,8 @@
             </ul>
             <div class="wf-schedule">🔥 Event-driven (continuo)</div>
         </div>
-        <div class="wf-card wf-alert">
-            <div class="wf-type">ALERTA</div>
+        <div class="wf-card">
+            <span class="wf-type wf-alert">Alerta</span>
             <div class="wf-title">Geofence Samsara</div>
             <ul class="wf-steps">
                 <li>Samsara webhook → Entrada/salida CEDIS</li>
@@ -622,8 +1496,8 @@
             </ul>
             <div class="wf-schedule">🔥 Webhook (tiempo real)</div>
         </div>
-        <div class="wf-card wf-report">
-            <div class="wf-type">REPORTE</div>
+        <div class="wf-card">
+            <span class="wf-type wf-report">Reporte</span>
             <div class="wf-title">Dashboard CEO Diario</div>
             <ul class="wf-steps">
                 <li>Consolidar KPIs de todos los boards</li>
@@ -632,8 +1506,8 @@
             </ul>
             <div class="wf-schedule">⏰ Diario 7:00pm</div>
         </div>
-        <div class="wf-card wf-compute">
-            <div class="wf-type">COMPUTE</div>
+        <div class="wf-card">
+            <span class="wf-type wf-compute">Compute</span>
             <div class="wf-title">P&L por Célula</div>
             <ul class="wf-steps">
                 <li>NetSuite → Ingresos + Costos por célula</li>
@@ -645,124 +1519,112 @@
     </div>
 </section>
 
-<!-- ═══════════════════ KPIs ═══════════════════ -->
+<!-- KPIs -->
 <section id="kpis">
-    <div class="section-label">Indicadores</div>
-    <div class="section-title">KPIs × Plataformas × Monday × Power BI</div>
-    <p class="section-desc">Mapa completo de indicadores por rol: fuente de datos, método de extracción, destino en Monday.com y visualización en Power BI.</p>
-
-    <div class="kpi-tabs">
-        <button class="kpi-tab active" onclick="showKpiPanel('karen')">Karen Álvarez — POD</button>
-        <button class="kpi-tab" onclick="showKpiPanel('jazmin')">Jazmín Olivares — Tesorería</button>
-        <button class="kpi-tab" onclick="showKpiPanel('thalia')">Thalía Ortiz — CxC/SAC</button>
+    <div class="section-header">
+        <div class="section-tag">Indicadores</div>
+        <h2 class="section-title">KPIs × Plataformas</h2>
+        <p class="section-desc">Mapa de indicadores por rol: fuente de datos, método de extracción, destino en Monday.com y visualización en Power BI.</p>
     </div>
 
-    <!-- Karen Panel -->
-    <div class="kpi-panel active" id="kpi-karen">
-        <div class="kpi-group-header">💻 Karen Álvarez — POD (Product Owner Manager)</div>
-        <p style="color: var(--q360-gray-400); font-size: 0.85rem; margin-bottom: 1.5rem;">Arquitecta del SND · Owner técnico de todas las plataformas · karen@quantum360.ltd</p>
+    <div class="kpi-tabs">
+        <div class="kpi-tab active" onclick="showKPI('ops')">Operaciones (SND + Supervisores)</div>
+        <div class="kpi-tab" onclick="showKPI('karen')">Karen Álvarez — POD</div>
+        <div class="kpi-tab" onclick="showKPI('jazmin')">Jazmín Olivares — Tesorería</div>
+    </div>
+
+    <!-- OPS PANEL (redistribuido post-CMCO) -->
+    <div class="kpi-panel active" id="kpi-ops">
+        <p style="font-size: 13px; color: var(--steel); margin-bottom: 24px; padding: 16px; background: rgba(95, 218, 244, 0.05); border-radius: 10px; border-left: 3px solid var(--electric-lemonade);">
+            <strong style="color: var(--white-smoke);">Post-CMCO (Feb 2026):</strong> Las 12 funciones del rol CMCO fueron redistribuidas entre el SND (automatización), supervisores de campo (Jaime, Gersom, Jorge), staff administrativo y el CEO. Los 36 KPIs originales ahora se ejecutan de forma distribuida.
+        </p>
         <table class="kpi-table">
             <thead>
-                <tr><th>Área (Peso)</th><th>KPI</th><th>Meta</th><th>Fuente</th><th>Frecuencia</th></tr>
+                <tr><th>KPI</th><th>Meta</th><th>Fuente</th><th>Owner</th><th>Extracción</th></tr>
             </thead>
             <tbody>
-                <tr><td rowspan="5" style="color: var(--q360-cyan); font-weight: 600;">Plataformas & Automatización (40%)</td><td>Uptime de plataformas digitales</td><td>≥99%</td><td>n8n</td><td>Continuo</td></tr>
+                <tr class="kpi-group-header"><td colspan="5">F1 · Monitoreo de Operaciones en Campo → Supervisores + SND</td></tr>
+                <tr><td>% Técnicos con check-in a tiempo</td><td>≥95%</td><td>Sesame</td><td>Supervisores</td><td>n8n schedule diario</td></tr>
+                <tr><td>Promedio hora llegada a CEDIS</td><td>≤08:15</td><td>Samsara</td><td>SND</td><td>n8n geofence webhook</td></tr>
+                <tr><td>OTs resueltas vs recibidas (diario)</td><td>≥90%</td><td>Monday</td><td>Supervisores</td><td>Monday automation</td></tr>
+                <tr class="kpi-group-header"><td colspan="5">F2 · Gestión de Tickets y OTs → SND Automatizado</td></tr>
+                <tr><td>Tiempo promedio resolución OT</td><td>≤4h</td><td>Monday</td><td>SND</td><td>Formula column</td></tr>
+                <tr><td>% OTs con evidencia fotográfica</td><td>100%</td><td>DataScope</td><td>Supervisores</td><td>n8n webhook</td></tr>
+                <tr><td>% OTs automatizadas sin intervención</td><td>≥80%</td><td>n8n</td><td>SND</td><td>n8n computed</td></tr>
+                <tr class="kpi-group-header"><td colspan="5">F3 · Coordinación Técnicos y Rutas → Samsara + SND</td></tr>
+                <tr><td>% cumplimiento rutas programadas</td><td>≥95%</td><td>Samsara</td><td>SND</td><td>n8n geofence</td></tr>
+                <tr><td>Km recorridos vs programados</td><td>±10%</td><td>Samsara</td><td>SND</td><td>n8n computed</td></tr>
+                <tr><td>Asignación balanceada por célula</td><td>σ ≤15%</td><td>Computed</td><td>CEO</td><td>n8n weekly</td></tr>
+                <tr class="kpi-group-header"><td colspan="5">F4–F12 · Funciones Consolidadas</td></tr>
+                <tr><td>F4 · Comunicación con Cliente (3 KPIs)</td><td>—</td><td>Monday + n8n</td><td>Supervisores</td><td>Diario</td></tr>
+                <tr><td>F5 · Control de Calidad (3 KPIs)</td><td>—</td><td>DataScope + Monday</td><td>Supervisores</td><td>Semanal</td></tr>
+                <tr><td>F6 · Gestión de Materiales (3 KPIs)</td><td>—</td><td>NetSuite + Monday</td><td>Admin</td><td>Semanal</td></tr>
+                <tr><td>F7 · Reporteo & Dashboards (3 KPIs)</td><td>—</td><td>Power BI + Monday</td><td>SND</td><td>Diario</td></tr>
+                <tr><td>F8 · Gestión de Incidencias (3 KPIs)</td><td>—</td><td>Monday + n8n</td><td>Supervisores</td><td>Continuo</td></tr>
+                <tr><td>F9 · Control de Flota (3 KPIs)</td><td>—</td><td>Samsara</td><td>Pedro Núñez</td><td>Tiempo real</td></tr>
+                <tr><td>F10 · Gestión de Asistencia (3 KPIs)</td><td>—</td><td>Sesame</td><td>Mario Torrero</td><td>Diario</td></tr>
+                <tr><td>F11 · Mejora Continua (3 KPIs)</td><td>—</td><td>Computed</td><td>CEO</td><td>Mensual</td></tr>
+                <tr><td>F12 · Cultura & Adopción Digital (3 KPIs)</td><td>—</td><td>Monday</td><td>Karen</td><td>Quincenal</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- KAREN PANEL -->
+    <div class="kpi-panel" id="kpi-karen">
+        <table class="kpi-table">
+            <thead>
+                <tr><th>KPI</th><th>Meta</th><th>Fuente</th><th>Frecuencia</th></tr>
+            </thead>
+            <tbody>
+                <tr class="kpi-group-header"><td colspan="4">Plataformas & Automatización (40%)</td></tr>
+                <tr><td>Uptime de plataformas digitales</td><td>≥99%</td><td>n8n</td><td>Continuo</td></tr>
                 <tr><td>Automatizaciones n8n operativas</td><td>≥25</td><td>n8n</td><td>Mensual</td></tr>
                 <tr><td>Calidad de automatizaciones</td><td>≥95%</td><td>Computed</td><td>Mensual</td></tr>
                 <tr><td>Resolución tickets soporte</td><td>&lt;24h</td><td>Monday</td><td>Diario</td></tr>
                 <tr><td>Documentación técnica completa</td><td>100%</td><td>Monday</td><td>Quincenal</td></tr>
-                <tr><td rowspan="3" style="color: var(--q360-cyan); font-weight: 600;">Adopción & Capacitación (25%)</td><td>% staff capacitado en plataformas</td><td>100%</td><td>Monday</td><td>Mensual</td></tr>
+                <tr class="kpi-group-header"><td colspan="4">Adopción & Capacitación (25%)</td></tr>
+                <tr><td>% staff capacitado en plataformas</td><td>100%</td><td>Monday</td><td>Mensual</td></tr>
                 <tr><td>Adopción activa Monday.com</td><td>≥90%</td><td>Monday</td><td>Semanal</td></tr>
-                <tr><td>NPS interno herramientas digitales</td><td>≥7.5</td><td>Computed</td><td>Trimestral</td></tr>
-                <tr><td rowspan="3" style="color: var(--q360-cyan); font-weight: 600;">Proyectos Estratégicos (35%)</td><td>SND v1.0 operativo</td><td>S1 2026</td><td>Monday</td><td>Hito</td></tr>
+                <tr><td>NPS interno de herramientas digitales</td><td>≥7.5</td><td>Computed</td><td>Trimestral</td></tr>
+                <tr class="kpi-group-header"><td colspan="4">Proyectos Estratégicos (35%)</td></tr>
+                <tr><td>SND v1.0 operativo</td><td>S1 2026</td><td>Monday</td><td>Hito</td></tr>
                 <tr><td>Portal TX Walmart</td><td>S2 2026</td><td>Monday</td><td>Hito</td></tr>
-                <tr><td>P&L automatizado por célula</td><td>Q2 2026</td><td>NetSuite + PBI</td><td>Hito</td></tr>
+                <tr><td>P&L automatizado por célula</td><td>Q2 2026</td><td>NetSuite / Power BI</td><td>Hito</td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Jazmin Panel -->
+    <!-- JAZMIN PANEL -->
     <div class="kpi-panel" id="kpi-jazmin">
-        <div class="kpi-group-header">💵 Jazmín Olivares — Tesorería & Servicio al Cliente</div>
-        <p style="color: var(--q360-gray-400); font-size: 0.85rem; margin-bottom: 1.5rem;">Gestión de facturación, cobranza, CxC y atención a clientes</p>
         <table class="kpi-table">
             <thead>
-                <tr><th>Área (Peso)</th><th>KPI</th><th>Meta</th><th>Fuente</th><th>Frecuencia</th></tr>
+                <tr><th>KPI</th><th>Meta</th><th>Fuente</th><th>Frecuencia</th></tr>
             </thead>
             <tbody>
-                <tr><td rowspan="4" style="color: var(--q360-cyan); font-weight: 600;">Facturación & Cobranza (50%)</td><td>Ciclo facturación (días)</td><td>≤5 días</td><td>NetSuite</td><td>Semanal</td></tr>
+                <tr class="kpi-group-header"><td colspan="4">Facturación & Cobranza (50%)</td></tr>
+                <tr><td>Ciclo facturación (días)</td><td>≤5 días</td><td>NetSuite</td><td>Semanal</td></tr>
                 <tr><td>DSO (Days Sales Outstanding)</td><td>≤45 días</td><td>NetSuite</td><td>Mensual</td></tr>
-                <tr><td>% CxC vencida >60 días</td><td>≤10%</td><td>NetSuite</td><td>Semanal</td></tr>
+                <tr><td>% CxC vencida &gt;60 días</td><td>≤10%</td><td>NetSuite</td><td>Semanal</td></tr>
                 <tr><td>Monto recuperado vs vencido</td><td>≥85%</td><td>NetSuite</td><td>Mensual</td></tr>
-                <tr><td rowspan="3" style="color: var(--q360-cyan); font-weight: 600;">Servicio al Cliente (30%)</td><td>Tiempo respuesta a requerimientos</td><td>≤24h</td><td>Monday</td><td>Diario</td></tr>
+                <tr class="kpi-group-header"><td colspan="4">Servicio al Cliente (30%)</td></tr>
+                <tr><td>Tiempo respuesta a requerimientos</td><td>≤24h</td><td>Monday</td><td>Diario</td></tr>
                 <tr><td>Satisfacción cliente (NPS)</td><td>≥8.0</td><td>Computed</td><td>Trimestral</td></tr>
                 <tr><td>% quejas resueltas en 1er contacto</td><td>≥80%</td><td>Monday</td><td>Semanal</td></tr>
-                <tr><td rowspan="2" style="color: var(--q360-cyan); font-weight: 600;">Operación Administrativa (20%)</td><td>Conciliaciones bancarias al día</td><td>100%</td><td>NetSuite</td><td>Semanal</td></tr>
+                <tr class="kpi-group-header"><td colspan="4">Operación Administrativa (20%)</td></tr>
+                <tr><td>Conciliaciones bancarias al día</td><td>100%</td><td>NetSuite</td><td>Semanal</td></tr>
                 <tr><td>Errores en facturación</td><td>≤2%</td><td>NetSuite</td><td>Mensual</td></tr>
             </tbody>
         </table>
     </div>
-
-    <!-- Thalia Panel -->
-    <div class="kpi-panel" id="kpi-thalia">
-        <div class="kpi-group-header">📋 Thalía Ortiz — CxC/SAC v3.0</div>
-        <p style="color: var(--q360-gray-400); font-size: 0.85rem; margin-bottom: 1.5rem;">Clave en ciclo O2C · Exige canales oficiales SND — no acepta vías informales</p>
-        <table class="kpi-table">
-            <thead>
-                <tr><th>Área</th><th>KPI</th><th>Meta</th><th>Fuente</th><th>Frecuencia</th></tr>
-            </thead>
-            <tbody>
-                <tr><td rowspan="3" style="color: var(--q360-cyan); font-weight: 600;">Ciclo O2C</td><td>OTs con documentación completa al cierre</td><td>100%</td><td>Monday</td><td>Diario</td></tr>
-                <tr><td>Tiempo procesamiento OT → Factura</td><td>≤48h</td><td>Monday + NetSuite</td><td>Semanal</td></tr>
-                <tr><td>% info recibida por canales oficiales SND</td><td>≥95%</td><td>Monday</td><td>Semanal</td></tr>
-                <tr><td rowspan="3" style="color: var(--q360-cyan); font-weight: 600;">Seguimiento CxC</td><td>Llamadas/gestiones de cobranza semanales</td><td>≥20</td><td>Monday</td><td>Semanal</td></tr>
-                <tr><td>% facturas con seguimiento activo</td><td>100%</td><td>NetSuite</td><td>Semanal</td></tr>
-                <tr><td>Reducción aging >60 días</td><td>MoM -5%</td><td>NetSuite</td><td>Mensual</td></tr>
-            </tbody>
-        </table>
-    </div>
 </section>
 
-<!-- ═══════════════════ PRINCIPIOS ═══════════════════ -->
-<section id="arquitectura">
-    <div class="section-label">Principios</div>
-    <div class="section-title">Principios de Diseño del SND</div>
-    <p class="section-desc">Reglas no-negociables que gobiernan toda la arquitectura digital.</p>
-
-    <div class="principles-grid">
-        <div class="principle-card">
-            <div class="principle-icon">🎯</div>
-            <div class="principle-title">Single Source of Truth</div>
-            <div class="principle-desc">Monday.com es la fuente única. Toda data vive o se refleja ahí.</div>
-        </div>
-        <div class="principle-card">
-            <div class="principle-icon">🔄</div>
-            <div class="principle-title">Cero Entrada Manual</div>
-            <div class="principle-desc">Si un dato se puede automatizar, se automatiza. Sin excepciones.</div>
-        </div>
-        <div class="principle-card">
-            <div class="principle-icon">🤖</div>
-            <div class="principle-title">El SND valida el SND</div>
-            <div class="principle-desc">Cero auditorías humanas. Los datos se cruzan y validan solos.</div>
-        </div>
-        <div class="principle-card">
-            <div class="principle-icon">📸</div>
-            <div class="principle-title">Sin registro, no existe</div>
-            <div class="principle-desc">Evidencia fotográfica, recibos, calendario. Todo documentado.</div>
-        </div>
-        <div class="principle-card">
-            <div class="principle-icon">⚡</div>
-            <div class="principle-title">Automatizar antes de vender</div>
-            <div class="principle-desc">La prioridad no es vender más, sino automatizar lo que ya tenemos.</div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════ ALERTAS ═══════════════════ -->
+<!-- ALERTAS -->
 <section id="alertas">
-    <div class="section-label">Escalamiento</div>
-    <div class="section-title">Sistema de Alertas</div>
-    <p class="section-desc">Escalamiento automático por severidad. Canales: WhatsApp (Evolution API), Email, Monday @menciones.</p>
+    <div class="section-header">
+        <div class="section-tag">Sistema de Alertas</div>
+        <h2 class="section-title">Escalamiento por Severidad</h2>
+        <p class="section-desc">Canales automáticos: WhatsApp (Evolution API), Email, Monday @menciones.</p>
+    </div>
 
     <div class="alerts-grid">
         <div class="alert-card alert-medium">
@@ -773,7 +1635,7 @@
                 <li>Vehículo fuera de geofence >30min</li>
                 <li>Material solicitado sin confirmar >24h</li>
             </ul>
-            <div class="alert-channel">Canal: Monday @owner · SLA: 2h respuesta</div>
+            <div class="alert-footer">Canal: Monday @owner · SLA: 2h</div>
         </div>
         <div class="alert-card alert-high">
             <div class="alert-severity">🔶 Severidad Alta</div>
@@ -783,7 +1645,7 @@
                 <li>Reclamo de cliente recibido</li>
                 <li>Factura vencida >30 días sin gestión</li>
             </ul>
-            <div class="alert-channel">Canal: WhatsApp + Monday · SLA: 1h respuesta</div>
+            <div class="alert-footer">Canal: WhatsApp + Monday · SLA: 1h</div>
         </div>
         <div class="alert-card alert-critical">
             <div class="alert-severity">🔴 Severidad Crítica</div>
@@ -793,30 +1655,158 @@
                 <li>Sistema core caído (Monday/n8n/NetSuite)</li>
                 <li>Accidente vehicular o laboral</li>
             </ul>
-            <div class="alert-channel">Canal: WhatsApp + Llamada + Email CEO · SLA: 15min</div>
-        </div>
-    </div>
-
-    <div style="margin-top: 3rem; text-align: center;">
-        <div class="hero-quote" style="display: inline-block;">
-            "Walmart no compra servicios de mantenimiento. Compra uptime, visibilidad y predictibilidad. El SND debe venderse en esos términos." — TR Drake APEX v3.2
+            <div class="alert-footer">Canal: WhatsApp + Llamada + Email CEO · SLA: 15min</div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<!-- COSTOS -->
+<section id="costos">
+    <div class="section-header">
+        <div class="section-tag">Inversión</div>
+        <h2 class="section-title">Resumen de Costos del Stack</h2>
+        <p class="section-desc">~2.3% del revenue anual ($31.5M MXN ≈ $1.57M USD). Solo software, excluye hardware y telecomunicaciones.</p>
+    </div>
+
+    <div class="costs-grid">
+        <div class="cost-card">
+            <div class="cost-label">Core (Monday + NS + GWS)</div>
+            <div class="cost-value">$2,360</div>
+            <div class="cost-pct">66% del stack</div>
+        </div>
+        <div class="cost-card">
+            <div class="cost-label">Infra (DO + n8n + PG)</div>
+            <div class="cost-value">$50</div>
+            <div class="cost-pct">1%</div>
+        </div>
+        <div class="cost-card">
+            <div class="cost-label">IA (Claude + Antigravity)</div>
+            <div class="cost-value">$60</div>
+            <div class="cost-pct">2%</div>
+        </div>
+        <div class="cost-card">
+            <div class="cost-label">Campo (Samsara + DS)</div>
+            <div class="cost-value">$300</div>
+            <div class="cost-pct">8%</div>
+        </div>
+        <div class="cost-card">
+            <div class="cost-label">HR (Sesame)</div>
+            <div class="cost-value">$150</div>
+            <div class="cost-pct">4%</div>
+        </div>
+        <div class="cost-card">
+            <div class="cost-label">BI (Power BI)</div>
+            <div class="cost-value">$40</div>
+            <div class="cost-pct">1%</div>
+        </div>
+        <div class="cost-card">
+            <div class="cost-label">Web + Design</div>
+            <div class="cost-value">$110</div>
+            <div class="cost-pct">3%</div>
+        </div>
+        <div class="cost-card cost-total">
+            <div class="cost-label">Total Mensual</div>
+            <div class="cost-value" style="color: var(--electric-lemonade);">$3,070</div>
+            <div class="cost-pct">USD/mes · $36,840/año</div>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-block">
+    <p class="quote-text">"Walmart no compra servicios de mantenimiento. Compra uptime, visibilidad y predictibilidad. El SND debe venderse en esos términos."</p>
+    <p class="quote-attr">— TR Drake APEX v3.2</p>
+</div>
+
+<!-- FOOTER -->
 <footer>
-    <div>Q360° | Sistema Nervioso Digital · Febrero 2026 · <a href="https://quantum360.ltd">quantum360.ltd</a></div>
-    <div class="footer-quote">Automatización + Visibilidad = Premium justificado</div>
+    <p>Q360° | Sistema Nervioso Digital · v4.0 · Febrero 2026 · <a href="https://quantum360.ltd" target="_blank">quantum360.ltd</a></p>
+    <p style="margin-top: 8px; font-size: 12px;">NM Limited + MR Coop · Automatización + Visibilidad = Premium justificado</p>
 </footer>
 
 <script>
-function showKpiPanel(role) {
+// ===== KPI TABS =====
+function showKPI(tab) {
     document.querySelectorAll('.kpi-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.kpi-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('kpi-' + role).classList.add('active');
+    document.getElementById('kpi-' + tab).classList.add('active');
     event.target.classList.add('active');
 }
+
+// ===== CONSTELLATION DIAGRAM =====
+(function() {
+    const nodes = [
+        { id:'ns',  label:'NetSuite',   abbr:'NS',  bg:'linear-gradient(135deg,#1a5276,#2e86c1)' },
+        { id:'gw',  label:'Google WS',  abbr:'GW',  bg:'linear-gradient(135deg,#4285f4,#34a853)' },
+        { id:'n8n', label:'n8n',         abbr:'n8n', bg:'linear-gradient(135deg,#ea4b71,#ff6d5a)' },
+        { id:'cl',  label:'Claude Team', abbr:'Cl',  bg:'linear-gradient(135deg,#d4a574,#c4956a)' },
+        { id:'ag',  label:'Antigravity', abbr:'AG',  bg:'linear-gradient(135deg,#4285f4,#ea4335)' },
+        { id:'pbi', label:'Power BI',    abbr:'PBI', bg:'linear-gradient(135deg,#f2c811,#e8a500)' },
+        { id:'sa',  label:'Samsara',     abbr:'Sa',  bg:'linear-gradient(135deg,#1a73e8,#4fc3f7)' },
+        { id:'ds',  label:'DataScope',   abbr:'DS',  bg:'linear-gradient(135deg,#00bcd4,#26c6da)' },
+        { id:'se',  label:'Sesame HR',   abbr:'Se',  bg:'linear-gradient(135deg,#f06292,#e91e63)' },
+        { id:'do',  label:'DigitalOcean',abbr:'DO',  bg:'linear-gradient(135deg,#0069ff,#0080ff)' },
+        { id:'ep',  label:'EasyPanel',   abbr:'EP',  bg:'linear-gradient(135deg,#7c3aed,#a78bfa)' },
+        { id:'pg',  label:'PostgreSQL',  abbr:'PG',  bg:'linear-gradient(135deg,#336791,#5a9fd4)' },
+        { id:'wa',  label:'Evolution WA',abbr:'WA',  bg:'linear-gradient(135deg,#25d366,#128c7e)' },
+        { id:'mc',  label:'Monday+AI',   abbr:'M+C', bg:'linear-gradient(135deg,#ff3d57,#d4a574)' },
+        { id:'wf',  label:'Webflow',     abbr:'Wf',  bg:'linear-gradient(135deg,#4353ff,#5e6eff)' },
+        { id:'ai',  label:'Adobe CC',    abbr:'Ai',  bg:'linear-gradient(135deg,#ff0000,#ff4444)' },
+        { id:'fb',  label:'Meta',        abbr:'Fb',  bg:'linear-gradient(135deg,#0084ff,#00c6ff)' },
+        { id:'bb',  label:'Budibase',    abbr:'Bb',  bg:'linear-gradient(135deg,#9b59b6,#bb6bd9)' },
+        { id:'pa',  label:'Payana',      abbr:'Pa',  bg:'linear-gradient(135deg,#f59e0b,#d97706)' },
+        { id:'sq',  label:'Squarespace', abbr:'Sq',  bg:'linear-gradient(135deg,#333,#555)' },
+        { id:'tr',  label:'Tractian',    abbr:'Tr',  bg:'linear-gradient(135deg,#1e3a5f,#2563eb)' },
+        { id:'gt',  label:'GIRI',        abbr:'GT',  bg:'linear-gradient(135deg,#059669,#10b981)' },
+    ];
+
+    const container = document.getElementById('constellation');
+    const svg = document.getElementById('linesSvg');
+    const cx = 50; // center %
+    const cy = 50;
+    const total = nodes.length;
+
+    // Two rings: inner 12, outer 10
+    const innerCount = 12;
+    const outerCount = total - innerCount;
+    const innerR = 32; // % from center
+    const outerR = 44;
+
+    nodes.forEach((n, i) => {
+        let angle, r;
+        if (i < innerCount) {
+            angle = (i / innerCount) * 2 * Math.PI - Math.PI / 2;
+            r = innerR;
+        } else {
+            const oi = i - innerCount;
+            angle = (oi / outerCount) * 2 * Math.PI - Math.PI / 2 + 0.3;
+            r = outerR;
+        }
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+
+        // Create node
+        const el = document.createElement('div');
+        el.className = 'spoke-node';
+        el.style.background = n.bg;
+        el.style.left = x + '%';
+        el.style.top = y + '%';
+        el.style.transform = 'translate(-50%,-50%)';
+        el.innerHTML = n.abbr + '<span class="spoke-tip">' + n.label + '</span>';
+        container.appendChild(el);
+
+        // Create SVG line
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', cx + '%');
+        line.setAttribute('y1', cy + '%');
+        line.setAttribute('x2', x + '%');
+        line.setAttribute('y2', y + '%');
+        // Vary animation delay for visual interest
+        line.style.animationDelay = (i * 0.1) + 's';
+        svg.appendChild(line);
+    });
+})();
 </script>
+
 </body>
 </html>
